@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href ="static/css/index.css">
+{% endblock %}
+
+
+{% block body %}
+<div id="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>The Technical Screener</h3>
+            <p>Just Select the type of stocks you are interested in and we will give you the best recommendation</p>
+            <div class="form-section">
+                <form action = "http://localhost:5000/ranking" method="POST">
+                    <select name="index" class="form-control-sm" style="width: 50%;">
+                        <option value=""> -- Select an index--</option>
+                        {% for index in indices %}
+                        <option value="{{ index }}" {% if indices == index %}selected="selected"{% endif %}>{{ index }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <br>
+                    <input type="submit" value="Get Recommendation" class="btn-success">
+        
+                </form>
+            </div>
+            <br>
+            <hr style="width:50%;">
+            <br>
+
+            <p>In case you are wondering, what these recommendations are based on, We backtest 300+ company data with 10+ strategies and then sort them according to return just for you. Also we use our Machine Learning Algorithms to optimise the variables in the strategies, so you have very less things to worry about.</p>
+            <button type="button" class="btn btn-info"><a href="http://localhost:5000/description">Read the strategies in depth</a></button>
+            <br>
+            <br>
+            <p><b>Why should you trust this ? </b></p>
+            <p>
+                <ul>
+                    <li>This is not a recommendation from the company, this is a recommendation we generate from the data. </li>
+                    <li>We are not making any market predictions, we are backtesting the past few weeks' data of the companies</li>
+                    <li>The application is thoroughly and then put to effect for you to use.</li>
+                </ul>
+            </p>
+
+        </div>
+        <div class="col-sm-6">
+            <h3>Backtesting and Analysis</h3>
+            <p>
+                Just select a company from the dropdown and get a small analysis of it. 
+            </p>
+            <div class="form-section">    
+                <form action="http://localhost:5000/visualization" method = "POST">
+                    <select name="company" class="form-control-sm"style="width:50%;">
+                        <option value="">-- Select a company --</option>
+                        {% for key in company %}
+                            <option value="{{ key }}" {% if company == key %}selected="selected"{% endif %}>{{ company[key] }}</option>
+                        {% endfor %}
+                    </select>
+            
+                    <input type="submit" value="Analyse" class="btn-success">
+                </form>
+                </div>
+            <br>
+            <p>In case you wanted to do some backtesting yourself you can select the company and the strategy and rest we will handle.</p>
+            <div class="form-section">
+                <form action="http://localhost:5000/strategy" method = "POST">
+                    <select name="company" class="form-control-sm" style="width:50%;">
+                        <option value="">-- Select your company --</option>
+                        {% for key in company %}
+                            <option value="{{ key }}" {% if company == key %}selected="selected"{% endif %}>{{ company[key] }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <br>
+                    <select name="Strategy" class="form-control-sm" style="width:50%;">
+                        <option value="">-- Select a Strategy to Backtest --</option>
+                        {% for key in Strategy %}
+                            <option value="{{ key }}" {% if company == key %}selected="selected"{% endif %}>{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <br>
+                    <input type="submit" value="backtest" class="btn-success">
+                </form>    
+            </div>
+            <hr style="width:50%">
+            <p><b> How can you use this ?</b></p>
+            <p>You can use it as a recommendation, for example, just before the market goes live get the recommendation and invest in the recommended stocks and the strategy. Chances are you will not face a loss !</p>
+            <p>Also in case you are want to analyse or backtest a company we can do that very easily here. </p>
+        </div>
+    </div>
+    </div>
+</body>
+{% endblock %}

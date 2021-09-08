@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href ="static/css/index.css">
+{% endblock %}
+
+
+{% block body %}
+    <br>
+    <br>
+    <h4>Today's Top Picks</h4>
+    <div class="stat-content">
+        {% for x in return_array[:15] %}
+            {% set String = x[0].split('_') %}
+            <h5>Company - {{ String[0] }}</h5>
+            <p>
+            <h5>Strategy - {{ String[1] }}</h5>
+            </p>
+            <p><h5>Strategy Description - </h5>
+
+                <p>Buy a position when:</p>
+                {% for x in strategy_description[String[1]]['buy condition'] %}
+                <ul>
+                
+                <li>{{ x }}</li>
+                </ul>
+                {% endfor %}            
+                <p>Close the position when:</p>
+                {% for x in strategy_description[String[1]]['sell condition'] %}
+                <ul>
+                <li>{{ x }}</li>
+                </ul>
+                {% endfor %}
+            </p>
+            <p>
+            {% for i in range(6,13) %}
+            {% set j = i - 6 %}
+            <p>
+                {{ outcome_variables[j] }} : {{ x[1][i] }}
+            </p>    
+            {% endfor %}
+            </p>
+            <img src = "static/images/{{ String[0] }}.png", alt="#",height = "100",width="200">
+            <br>
+        {% endfor %}
+    </div>    
+</body>
+</html>
+{% endblock %}
+

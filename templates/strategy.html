@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Company : {{ company }}</h3>
+            <h3>Strategy : {{ strategy }}</h3>
+            <p><h5>Strategy Description - </h5>
+
+                <p>Buy a position when:</p>
+                {% for x in strategy_description[strategy]['buy condition'] %}
+                <ul>
+                
+                <li>{{ x }}</li>
+                </ul>
+                {% endfor %}            
+                <p>Close the position when:</p>
+                {% for x in strategy_description[strategy]['sell condition'] %}
+                <ul>
+                <li>{{ x }}</li>
+                </ul>
+                {% endfor %}
+            </p>
+            <p>
+                {% for i in range(6,13) %}
+                {% set j = i - 6 %}
+                <p>
+                    {{ outcome_variables[j] }} - {{ company_statistics[i] }}
+                </p>
+                {% endfor %}
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <img src = "static\images\{{ company }}.png">
+        </div>
+    </div>
+</div>
+{% endblock %}

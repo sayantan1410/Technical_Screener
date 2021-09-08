@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block body %}
+<br>
+<br>
+<div class="container">
+    <p><h4>Company - {{ company }} USD</h4></p>
+    <p><h4>Volume - {{ volume }} USD</h4></p>
+    <p><h4>Current Price - {{ closing_price }}</h4></p>
+    <div class="row">
+        <div class="col-sm-6" style="padding:15px;">
+            <div class="page" style="max-width: 100%;">
+                <h4>Indicators in the last 10 minutes</h4>
+                {% for table in tables %}
+                {{ table|safe }}
+                {% endfor %}
+            </div>
+
+        </div>
+        <div class="col-sm-6" style="padding:15px;">
+            <div id="chart" style="max-width: 100%;"></div>
+        </div>
+    </div>
+    </div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+    var graphs = {{graphJSON | safe}};
+    Plotly.plot('chart',graphs,{});        
+</script>
+</html>
+{% endblock %}

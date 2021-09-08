@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row">
+    {% for x in strategy_description %}
+    <div class="col-sm-6">
+    <p><b>Strategy - {{ x }}</p>
+    <p> Strategy description-</p></b>
+    <p>Buy a position when:</p>
+                {% for k in strategy_description[x]['buy condition'] %}
+                <ul>
+                
+                <li>{{ k }}</li>
+                </ul>
+                {% endfor %}            
+                <p>Close the position when:</p>
+                {% for k in strategy_description[x]['sell condition'] %}
+                <ul>
+                <li>{{ k }}</li>
+                </ul>
+                {% endfor %}
+            </p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+.col-sm-6{
+    background-color: lavender;
+    border: 10px solid white;
+    padding: 15px;
+    text-align: center;
+}
+#container{
+    margin: 20px 50px;
+}
+
+button a{
+    text-decoration: none;
+    color: white;
+}

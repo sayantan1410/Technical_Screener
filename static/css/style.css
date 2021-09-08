@@ -1,0 +1,36 @@
+#navbarCollapse a{
+    font-size: 15px;
+    font-family: fantasy;
+    transition: all ease 0.5s;
+    padding: 15px;
+}
+
+#navbarCollapse a:hover{
+    background-color: aqua;
+
+}
+
+h4{
+    text-align: center;
+}
+.stat-content{
+    width: 75%;
+    background-color: white;
+    margin: auto;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 10px;
+
+}
+
+.stat-content img{
+    float:right;
+    margin-top: -50%;
+    margin-right: -10%;
+    padding-left: 10%;
+}
+
+.form-section{
+    width: 75%;
+    margin: auto;
+}
